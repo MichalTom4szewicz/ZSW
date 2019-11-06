@@ -5,7 +5,7 @@ from scipy.io.wavfile import write
 from time import gmtime, strftime
 from scipy.io import wavfile as wav
 import os
-
+import time
 # Authenticate to Twitter
 auth = tweepy.OAuthHandler("Y509knpZaOHKERLudDQ5yCa1a",
                            "WOpjxR4FFAuEXgTvZ5gSqPBWAkgem8r82XyKnyV4kfAjOPxvh0")
@@ -104,10 +104,14 @@ def get_humi():
 
 
 if __name__ == "__main__":
-    min, max, timestamp = get_sound()
-    sensor_data = {"temperature": get_temp(), "humidity": get_humi(), "loudness": int((min+max)/2)}
-    to_file(min, max, timestamp)
+
 
     auth_twitter()
     api = init_twitter()
-    post_update(api, sensor_data)
+
+    while True:
+        time.sleep(3600)
+        min, max, timestamp = get_sound()
+        sensor_data = {"temperature": get_temp(), "humidity": get_humi(), "loudness": int((min+max)/2)}
+        to_file(min, max, timestamp)
+        post_update(api, sensor_data)
