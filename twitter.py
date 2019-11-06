@@ -7,6 +7,9 @@ auth = tweepy.OAuthHandler("Y509knpZaOHKERLudDQ5yCa1a",
 auth.set_access_token("1182367262453518336-C50nxYQTZwKZrmLuHleyorIvSVUO95",
                       "wvRMz5fqiHGhS6JOQqXDt5l40cw5yrA1IBfJNZV3vQHYg")
 
+def get_sound():
+        # here
+
 
 def auth_twitter():
     api = tweepy.API(auth)
@@ -46,7 +49,7 @@ def get_humi():
 
 
 if __name__ == "__main__":
-    sensor_data = {"temperature": get_temp(), "humidity": get_humi(), "loudness": 72}
+    sensor_data = {"temperature": get_temp(), "humidity": get_humi(), "loudness": get_sound()}
     auth_twitter()
     api = init_twitter()
     post_update(api, sensor_data)
