@@ -93,14 +93,14 @@ min=100
 max=0    
 for value in x:
     a = float(value)
-    sum += a
+   
     if a<min:
             min=a
     if a>max:
             max=a
-average = sum / len(x)
 
-print(round(average,2))
+
+
 print(min)
 print(max)
     
