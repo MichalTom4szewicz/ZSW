@@ -93,32 +93,41 @@ min=100
 max=0    
 for value in x:
     a = float(value)
-   
+    sum += a
     if a<min:
             min=a
     if a>max:
             max=a
+average = sum / len(x)
+average = round(average,2)
 
-
-
+print(str(average))
 print(min)
 print(max)
     
 # dzielimy przedzial na 5 czesci i zaleznie od tego w ktorej czesci znajduje sie probka bedzie okreslane czy glosno, cicho itp     
+poczatek = 0 
+if (min+max)/2 >= average :
+    print("srodek powyzej sredniej")
+    szerokoscPoziomu = (average - min) /(2.5)
+    print(szerokoscPoziomu)
+    poczatek = min
+else: 
+    print("srodek ponizej sredniej")
+    szerokoscPoziomu = (max - average) /(2.5)
+    print(szerokoscPoziomu)
+    poczatek = max - 5* szerokoscPoziomu
 
-przedzial = max - min 
-szerokoscPoziomu = przedzial/5
-if(szerokoscPoziomu >0 ):
-    if( min + szerokoscPoziomu  >= poziomHalasu and poziomHalasu >= min):
-        print("bardzo cicho")
-    if( min + 2* szerokoscPoziomu  >= poziomHalasu and poziomHalasu > min + szerokoscPoziomu ):
-        print("cicho")
-    if( min + 3* szerokoscPoziomu  >= poziomHalasu and poziomHalasu > min + 2* szerokoscPoziomu):
-        print("przecietnie glosno")
-    if( min + 4* szerokoscPoziomu  >= poziomHalasu and poziomHalasu > min + 3* szerokoscPoziomu):
-        print("glosno")
-    if( max  >= poziomHalasu and poziomHalasu > min + 4* szerokoscPoziomu):
-        print("bardzo glosno")
-else:
+
+
+
+if( poczatek + szerokoscPoziomu  > poziomHalasu and poziomHalasu >= 0):
+    print("bardzo cicho")
+if( poczatek + 2* szerokoscPoziomu  > poziomHalasu and poziomHalasu >= poczatek + szerokoscPoziomu ):
+    print("cicho")
+if( poczatek + 3* szerokoscPoziomu  >= poziomHalasu and poziomHalasu >= poczatek + 2* szerokoscPoziomu):
     print("przecietnie glosno")
-
+if( poczatek + 4* szerokoscPoziomu  >= poziomHalasu and poziomHalasu > poczatek + 3* szerokoscPoziomu):
+    print("glosno")
+if( 150  >= poziomHalasu and poziomHalasu > poczatek + 4* szerokoscPoziomu):
+    print("bardzo glosno")
